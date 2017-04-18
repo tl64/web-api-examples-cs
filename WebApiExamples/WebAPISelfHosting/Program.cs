@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -18,7 +19,20 @@ namespace WebAPISelfHosting
             var task = server.OpenAsync();
             task.Wait();
             Console.WriteLine("Server is opened");
+            Console.WriteLine("Hit enter to call server with client");
             Console.ReadLine();
+            var client = new HttpClient(server); //HttpSelfHostServer derives from HttpMessageHandler => you can put server in HttpClient
+            client.GetAsync("http://localhost:4554/api/my").ContinueWith((t) =>
+            {
+                var result = t.Result;
+                result.Content.ReadAsStringAsync().ContinueWith((rt) =>
+                {
+                    Console.WriteLine($"Client got response {rt.Result}");
+                });
+            });
+
+            //delay
+            Console.ReadKey();
         }
     }
 }
