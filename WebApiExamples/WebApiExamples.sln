@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPISelfHosting", "WebAPI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSide", "ClientSide\ClientSide.csproj", "{1E9D3267-615D-4218-8FFF-F6021D724567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndSideWebAPI", "BackEndSideWebAPI\BackEndSideWebAPI.csproj", "{86B07804-9994-4D6D-A141-9398BEBA3D83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEndAPI", "BackEndAPI\BackEndAPI.csproj", "{4421A647-282B-4C2A-A12C-1A496868AA5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{1E9D3267-615D-4218-8FFF-F6021D724567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E9D3267-615D-4218-8FFF-F6021D724567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E9D3267-615D-4218-8FFF-F6021D724567}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86B07804-9994-4D6D-A141-9398BEBA3D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86B07804-9994-4D6D-A141-9398BEBA3D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86B07804-9994-4D6D-A141-9398BEBA3D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86B07804-9994-4D6D-A141-9398BEBA3D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4421A647-282B-4C2A-A12C-1A496868AA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4421A647-282B-4C2A-A12C-1A496868AA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4421A647-282B-4C2A-A12C-1A496868AA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4421A647-282B-4C2A-A12C-1A496868AA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

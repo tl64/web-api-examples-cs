@@ -6,13 +6,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace BackEndSideWebAPI.Controllers
+namespace BackEndAPI.Controllers
 {
-    [Authorize]
     public class FilesController : ApiController
     {
-        //private static string rootPath = @"C:\Users\HP\Desktop\Test\Server files";
-        private static string rootPath = @"D:\test";
+        private static string rootPath = @"C:\Users\HP\Desktop\Test\Server files";
+        //private static string rootPath = @"D:\test";
 
         // GET api/values
         public IEnumerable<string> Get()
@@ -43,10 +42,12 @@ namespace BackEndSideWebAPI.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
-            var fileName = value; //Path.GetRandomFileName();
-            var fileInfo = new FileInfo(Path.Combine(rootPath, fileName));
-            if (!fileInfo.Exists) fileInfo.Create();
-            else fileInfo.Create().Dispose();
+            //var fileName = value; //Path.GetRandomFileName();
+            //var fileInfo = new FileInfo(Path.Combine(rootPath, fileName));
+            //if (!fileInfo.Exists) fileInfo.Create();
+            //else fileInfo.Create().Dispose();
+            if (!File.Exists(Path.Combine(rootPath, value))) File.Create(Path.Combine(rootPath, value));
+            else throw new Exception("File already exists!");
         }
 
         // PUT api/values/5

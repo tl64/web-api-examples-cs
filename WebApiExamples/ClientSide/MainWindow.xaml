@@ -10,10 +10,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="86*"></ColumnDefinition>
             <ColumnDefinition Width="277*"></ColumnDefinition>
-            <ColumnDefinition Width="156*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ListBox Name="listOfFiles" Grid.Column="2" Visibility="Hidden" Margin="0, 5,5,5" BorderThickness="2" BorderBrush="Black"></ListBox>
+        <ListBox Name="listOfFiles" Grid.Column="2" Visibility="Collapsed" Margin="0, 5,5,5" BorderThickness="2" BorderBrush="Black"></ListBox>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="5" VerticalAlignment="Center">
             <Button Margin="5">
@@ -28,6 +28,6 @@
             <TextBox Margin="5" HorizontalContentAlignment="Center">Enter ID</TextBox>
         </StackPanel>
 
-        <Label Grid.Column="1" Margin="5" BorderThickness="2" BorderBrush="Black">Content...</Label>
+        <Label Name="ContentLabel" Grid.Column="1" Margin="5" BorderThickness="2" BorderBrush="Black">Content...</Label>
     </Grid>
 </Window>

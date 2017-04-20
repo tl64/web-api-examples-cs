@@ -95,12 +95,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BackEndSideWebAPI\BackEndSideWebAPI.csproj">
-      <Project>{86b07804-9994-4d6d-a141-9398beba3d83}</Project>
-      <Name>BackEndSideWebAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
