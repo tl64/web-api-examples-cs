@@ -51,8 +51,7 @@ namespace BackEndAPI.Controllers
         public void Put(int id, [FromBody]string value)
         {
             var files = Directory.GetFiles(rootPath);
-            var fileContents = value;
-            File.WriteAllText(files[id], fileContents);
+            File.WriteAllText(files[id], value); //value = file content
         }
 
         // DELETE api/values/5
