@@ -6,7 +6,6 @@
 <img src="https://cloud.githubusercontent.com/assets/25085025/25303971/8b01694a-276e-11e7-997e-8510cb31f802.PNG" alt="not found" title="qyabab"/>
 <p>The REST architectural style has proven to be an effective way to leverage HTTP - although it is certainly not the only valid approach to HTTP.</p>
 <p>REST stands for ‘Representational State Transfer’ and it is an architectural pattern for creating an API that uses HTTP as its underlying communication method. REST was originally conceived by Roy Fielding in his 2000 dissertation paper entitled ‘Architectural Styles and the Design of Network-based Software Architectures’.</p>
-<br/>
 <span>Here are some principles applicable in REST-like applications:</span>
 <ul type="circle">
 <li><b>The state of a resource remains internal to the server, not the client</b> – The client can request it, or update it with requests made to the server.</li>
