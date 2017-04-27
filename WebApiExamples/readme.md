@@ -1,3 +1,6 @@
+<h3>Get, create, add, update files with Web API</h3>
+<img src="https://cloud.githubusercontent.com/assets/25085025/25475183/f95242f8-2b46-11e7-8ffc-a3383e9ab241.gif"/>
+
 <h3>OData query example</h3>
 
 ```cs
