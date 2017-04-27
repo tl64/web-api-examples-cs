@@ -1,5 +1,6 @@
 <h3>OData query example</h3>
-```csharp
+
+```cs
 public class PostsController : ApiController
 {
     private static List<Post> posts;
