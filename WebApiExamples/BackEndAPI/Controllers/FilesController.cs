@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Http;
 
 namespace BackEndAPI.Controllers
@@ -13,7 +14,7 @@ namespace BackEndAPI.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return Directory.GetFiles(rootPath);
+            return Directory.GetFiles(rootPath).Select(Path.GetFileName);
         }
 
         // GET api/values/5

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -36,6 +37,7 @@ namespace ClientSide
                     responseString = responseContent.ReadAsStringAsync().Result;
                 }
             }
+            responseString = responseString.Replace(",", Environment.NewLine);
             ContentBlock.Text = responseString;
         }
         //get by id

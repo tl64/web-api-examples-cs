@@ -41,7 +41,7 @@ namespace ODataExample.Controllers
          * linecount
          * http://localhost:65418/odata/Posts?$inlinecount=allpages returns all records
          * skip
-         * http://localhost:65418/odata/Posts?$skip=3    skip first 3 records
+         * http://localhost:65418/odata/Posts?$skip=3    skips first 3 records
          */
     }
 }
