@@ -16,3 +16,11 @@
 <li><b>Responses explicitly indicate their cacheability</b> – When a server returns a response to a request, the information it contains may or may not be cached by the client. If not, the client should make new requests to obtain the latest status of a resource, for example.</li>
 <li><b>Code on Demand</b> – This is an optional feature in REST. Clients can fetch some extra code from the server to enrich their functionalities. An example is Javascript.</li>
 </ul>
+
+<hr height="5"/>
+<h2>Keywords</h2>
+<ul type="square">
+  <li>Visual Studio 2015</li>
+  <li>C# 6.0</li>
+  <li>.Net Framework 4.6</li>
+</ul>
