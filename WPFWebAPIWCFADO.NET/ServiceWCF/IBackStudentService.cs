@@ -28,12 +28,18 @@ namespace ServiceWCF
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceWCF.ContractType".
     [DataContract]
-    public class CompositeType
+    public class Student
     {
         [DataMember]
-        public bool BoolValue { get; set; } = true;
+        public int StudentId { get; set; }
+        [DataMember]
+        public string FirstName { get; set; } = string.Empty;
 
         [DataMember]
-        public string StringValue { get; set; } = "Hello ";
+        public string LastName { get; set; } = string.Empty;
+        [DataMember]
+        public string Email { get; set; } = string.Empty;
+        [DataMember]
+        public string PhoneNumber { get; set; } = string.Empty;
     }
 }

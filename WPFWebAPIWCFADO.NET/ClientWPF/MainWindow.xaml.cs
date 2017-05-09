@@ -26,21 +26,20 @@ namespace ClientWPF
     public partial class MainWindow : Window
     {
         HttpClient client = new HttpClient();
-        private readonly Uri currentUri = new Uri(@"http://localhost:61401/");
+        private readonly string currentAddress = @"http://localhost:61401/";
         public MainWindow()
         {
             InitializeComponent();
         }
 
         //get by id
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var response = client.GetAsync(currentUri).Result;
+            var response = client.GetAsync($"{currentAddress}api/Students").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (DataTable)JsonConvert.DeserializeObject(json, typeof (DataTable));
+            var data = (DataTable) JsonConvert.DeserializeObject(json, typeof (DataTable));
+            Grid.ItemsSource = data.AsEnumerable();
             //var data = Newtonsoft.Json.Converters.DataTableConverter
-
-            Grid.ItemsSource = data as IEnumerable;
         }
     }
 }
