@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
+using ServiceWCF;
 
 namespace ClientWPF
 {
@@ -37,9 +38,8 @@ namespace ClientWPF
         {
             var response = client.GetAsync($"{currentAddress}api/Students").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (DataTable) JsonConvert.DeserializeObject(json, typeof (DataTable));
-            Grid.ItemsSource = data.AsEnumerable();
-            //var data = Newtonsoft.Json.Converters.DataTableConverter
+            var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
+            Grid.ItemsSource = data;
         }
     }
 }

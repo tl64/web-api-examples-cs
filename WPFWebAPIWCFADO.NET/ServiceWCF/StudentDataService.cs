@@ -27,7 +27,7 @@ namespace ServiceWCF
 
         public DataTable GetAllStudents()
         {
-            var students = new DataTable("Students");
+            var students = new DataTable();
             const string query = "select * from students";
 
             var conn = new SqlConnection(connectionString);

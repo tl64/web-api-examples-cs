@@ -85,6 +85,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Properties\DataSources\ServiceWCF.Student.datasource" />
     <None Include="Service References\StudentServiceReference\configuration91.svcinfo" />
     <None Include="Service References\StudentServiceReference\configuration.svcinfo" />
     <None Include="Service References\StudentServiceReference\Reference.svcmap">
@@ -134,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\StudentServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceWCF\ServiceWCF.csproj">
+      <Project>{5168D9D2-22A4-4830-9206-35C4670CF02E}</Project>
+      <Name>ServiceWCF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
