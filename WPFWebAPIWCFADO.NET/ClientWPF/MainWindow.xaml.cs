@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -13,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace ClientWPF
 {
@@ -29,10 +33,14 @@ namespace ClientWPF
         }
 
         //get by id
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var httpResult = client.GetAsync(currentUri).Result;
-            //var final = httpResult.Content.ReadAsStringAsync().Result;
+            var response = client.GetAsync(currentUri).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            var data = (DataTable)JsonConvert.DeserializeObject(json, typeof (DataTable));
+            //var data = Newtonsoft.Json.Converters.DataTableConverter
+
+            Grid.ItemsSource = data as IEnumerable;
         }
     }
 }

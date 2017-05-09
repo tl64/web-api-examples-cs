@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWPF", "ClientWPF\ClientWPF.csproj", "{CC8D1401-EFAC-4385-8F11-A5CDE3C9ED67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlePartWebAPI", "MiddlePartWebAPI\MiddlePartWebAPI.csproj", "{42E36ADC-5C0A-4C0D-8E3D-0C1A7F3C26C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5168D9D2-22A4-4830-9206-35C4670CF02E} = {5168D9D2-22A4-4830-9206-35C4670CF02E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceWCF", "ServiceWCF\ServiceWCF.csproj", "{5168D9D2-22A4-4830-9206-35C4670CF02E}"
 EndProject

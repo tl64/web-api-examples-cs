@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="87c6aa6f-f539-4377-845e-cf28ecd08f42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/ServiceWCF/StudentDataService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="076c2c0d-b7a2-4994-9c18-fc1342538746" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiceWCF/StudentDataService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2d111c4c-49b2-4f83-beab-693b5ca0c5dc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiceWCF/StudentDataService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="fd8fb2a8-d15c-4516-ac47-6a4a545ee4af" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiceWCF/StudentDataService/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="073b5769-31d9-48cd-8b51-f063a09f3231" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ServiceWCF/StudentDataService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

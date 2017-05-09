@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MiddlePartWebAPI.StudentServiceReference;
 
 namespace MiddlePartWebAPI.Controllers
 {
     public class StudentsController : ApiController
     {
         // GET: api/Students
-        public IEnumerable<string> Get()
+        public DataTable Get()
         {
-            return new string[] { "value1", "value2" };
+            var proxy = new BackStudentServiceClient();
+            var studentsTable = proxy.GetAllStudentsAsync().Result;
+            return studentsTable;
         }
 
         // GET: api/Students/5

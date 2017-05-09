@@ -12,11 +12,11 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Margin="5"></DataGrid>
+        <DataGrid Name="Grid" Grid.Row="0" Margin="5"></DataGrid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Width="auto">
-            <Button Margin="5" Click="Button_Click">Get by ID</Button>
-            <Button Margin="5">Get all</Button>
+            <Button Margin="5">Get by ID</Button>
+            <Button Margin="5" Click="Button_Click">Get all</Button>
             <Button Margin="5">Add</Button>
             <Button Margin="5">Delete</Button>
             <Button Margin="5">Update</Button>
