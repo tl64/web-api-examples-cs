@@ -10,8 +10,9 @@ namespace ServiceWCF
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class StudentDataService : IBackStudentService
     {
-        string connectionString =
-            @"data source = (local)\sqlexpress; initial catalog = shopdb; integrated security = true;";
+        private const string connectionString = @"data source = (local)\sqlexpress; initial catalog = shopdb; integrated security = true;";
+
+        DataTable students = new DataTable("Students");
         //public CompositeType GetDataUsingDataContract(CompositeType composite)
         //{
         //    if (composite == null)
@@ -27,7 +28,6 @@ namespace ServiceWCF
 
         public DataTable GetAllStudents()
         {
-            var students = new DataTable();
             const string query = "select * from students";
 
             var conn = new SqlConnection(connectionString);
@@ -44,9 +44,33 @@ namespace ServiceWCF
             }
         }
 
-        public string GetStudentByID(int id)
+        public IEnumerable<string> GetStudentByID(int id)
         {
-            throw new NotImplementedException();
+            const string query = "select * from students";
+
+            var conn = new SqlConnection(connectionString);
+            var cmd = new SqlCommand(query, conn);
+            using (conn)
+            {
+                conn.Open();
+
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(students);
+                    //if (id < 0 || id > students.Rows.Count) return students.NewRow();
+                    var student = students.Rows.Find(id);
+                    var list = new List<string>
+                    {
+                        student[0].ToString(),
+                        student[1].ToString(),
+                        student[2].ToString(),
+                        student[3].ToString(),
+                        student[4].ToString()
+                    };
+                    return list;
+                    //return student ?? students.NewRow();
+                }
+            }
         }
 
         public void AddStudent()

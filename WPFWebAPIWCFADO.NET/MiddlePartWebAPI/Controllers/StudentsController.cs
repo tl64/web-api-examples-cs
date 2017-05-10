@@ -12,10 +12,10 @@ namespace MiddlePartWebAPI.Controllers
 {
     public class StudentsController : ApiController
     {
+        BackStudentServiceClient proxy = new BackStudentServiceClient();
         // GET: api/Students
         public IEnumerable<Student> Get()
         {
-            var proxy = new BackStudentServiceClient();
             var studentsTable = proxy.GetAllStudentsAsync().Result;
             return studentsTable.AsEnumerable().Select(row => new Student
             {
@@ -28,9 +28,10 @@ namespace MiddlePartWebAPI.Controllers
         }
 
         // GET: api/Students/5
-        public string Get(int id)
+        public IEnumerable<string> Get(int id)
         {
-            return "value";
+            var student = proxy.GetStudentByIDAsync(id).Result;
+            return student;
         }
 
         // POST: api/Students

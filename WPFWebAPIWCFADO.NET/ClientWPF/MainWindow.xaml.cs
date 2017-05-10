@@ -33,13 +33,32 @@ namespace ClientWPF
             InitializeComponent();
         }
 
-        //get by id
+        //get all students
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var response = client.GetAsync($"{currentAddress}api/Students").Result;
             var json = response.Content.ReadAsStringAsync().Result;
             var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
             Grid.ItemsSource = data;
+        }
+
+        //get by id
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (!IsValidNumber(IdTextBox.Text))
+            {
+                MessageBox.Show("Enter a valid id number");
+                return;
+            }
+            var response = client.GetAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+            var data = (List<string>) JsonConvert.DeserializeObject(json, typeof (List<string>));
+            Grid.ItemsSource = data;
+        }
+
+        private static bool IsValidNumber(string text)
+        {
+            return !string.IsNullOrEmpty(text) && text.All(char.IsDigit);
         }
     }
 }

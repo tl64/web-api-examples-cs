@@ -22,10 +22,10 @@ namespace MiddlePartWebAPI.StudentServiceReference {
         System.Threading.Tasks.Task<System.Data.DataTable> GetAllStudentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/GetStudentByID", ReplyAction="http://tempuri.org/IBackStudentService/GetStudentByIDResponse")]
-        string GetStudentByID(int id);
+        string[] GetStudentByID(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/GetStudentByID", ReplyAction="http://tempuri.org/IBackStudentService/GetStudentByIDResponse")]
-        System.Threading.Tasks.Task<string> GetStudentByIDAsync(int id);
+        System.Threading.Tasks.Task<string[]> GetStudentByIDAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/AddStudent", ReplyAction="http://tempuri.org/IBackStudentService/AddStudentResponse")]
         void AddStudent();
@@ -81,11 +81,11 @@ namespace MiddlePartWebAPI.StudentServiceReference {
             return base.Channel.GetAllStudentsAsync();
         }
         
-        public string GetStudentByID(int id) {
+        public string[] GetStudentByID(int id) {
             return base.Channel.GetStudentByID(id);
         }
         
-        public System.Threading.Tasks.Task<string> GetStudentByIDAsync(int id) {
+        public System.Threading.Tasks.Task<string[]> GetStudentByIDAsync(int id) {
             return base.Channel.GetStudentByIDAsync(id);
         }
         
