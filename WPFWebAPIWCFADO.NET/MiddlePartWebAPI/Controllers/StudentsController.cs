@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -28,10 +29,17 @@ namespace MiddlePartWebAPI.Controllers
         }
 
         // GET: api/Students/5
-        public IEnumerable<string> Get(int id)
+        public IEnumerable<Student> Get(int id)
         {
             var student = proxy.GetStudentByIDAsync(id).Result;
-            return student;
+            return student.AsEnumerable().Select(row => new Student
+            {
+                StudentId = Convert.ToInt32(row["StudentID"]),
+                FirstName = row["FName"].ToString(),
+                LastName = row["LName"].ToString(),
+                Email = row["Email"].ToString(),
+                PhoneNumber = row["Phone"].ToString()
+            });
         }
 
         // POST: api/Students

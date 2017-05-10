@@ -52,7 +52,7 @@ namespace ClientWPF
             }
             var response = client.GetAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (List<string>) JsonConvert.DeserializeObject(json, typeof (List<string>));
+            var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
             Grid.ItemsSource = data;
         }
 

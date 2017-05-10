@@ -38,13 +38,14 @@ namespace ServiceWCF
 
                 using (var da = new SqlDataAdapter(cmd))
                 {
+                    students.Clear();
                     da.Fill(students);
                     return students;
                 }
             }
         }
 
-        public IEnumerable<string> GetStudentByID(int id)
+        public DataTable GetStudentByID(int id)
         {
             const string query = "select * from students";
 
@@ -58,19 +59,29 @@ namespace ServiceWCF
                 {
                     da.Fill(students);
                     //if (id < 0 || id > students.Rows.Count) return students.NewRow();
-                    var student = students.Rows.Find(id);
-                    var list = new List<string>
+                    var studentRows = students.Select($"StudentID = {id}");
+                    foreach (DataRow row in studentRows)
                     {
-                        student[0].ToString(),
-                        student[1].ToString(),
-                        student[2].ToString(),
-                        student[3].ToString(),
-                        student[4].ToString()
-                    };
-                    return list;
-                    //return student ?? students.NewRow();
+                            students.ImportRow(row);
+                    }
+                    return students;
                 }
             }
+            //var query = $"select * from students where studentid = {id}";
+
+            //var conn = new SqlConnection(connectionString);
+            //var cmd = new SqlCommand(query, conn);
+            //using (conn)
+            //{
+            //    conn.Open();
+
+            //    using (var da = new SqlDataAdapter(cmd))
+            //    {
+            //        students.Clear();
+            //        da.Fill(students);
+            //        return students;
+            //    }
+            //}
         }
 
         public void AddStudent()

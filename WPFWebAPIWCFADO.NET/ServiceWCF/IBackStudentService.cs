@@ -16,7 +16,7 @@ namespace ServiceWCF
         DataTable GetAllStudents();
 
         [OperationContract]
-        IEnumerable<string> GetStudentByID(int id);
+        DataTable GetStudentByID(int id);
         [OperationContract]
         void AddStudent();
         [OperationContract]

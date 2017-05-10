@@ -86,9 +86,6 @@
     <Content Include="Global.asax" />
     <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <Content Include="Properties\DataSources\ServiceWCF.Student.datasource" />
-    <None Include="Service References\StudentServiceReference\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\StudentServiceReference\configuration91.svcinfo" />
     <None Include="Service References\StudentServiceReference\configuration.svcinfo" />
     <None Include="Service References\StudentServiceReference\Reference.svcmap">
