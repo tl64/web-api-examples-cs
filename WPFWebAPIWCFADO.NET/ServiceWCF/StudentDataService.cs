@@ -68,20 +68,21 @@ namespace ServiceWCF
             }
         }
 
-        public void AddStudent(IEnumerable<Student> students)
+        public void AddStudent(IEnumerable<Student> inputStudents)
         {
             var connection = new SqlConnection(connectionString);
             var query = @"insert Students values (@param1,@param2,@param3,@param4,@param5)";
             var command = new SqlCommand(query,connection);
             using (connection)
             {
-                foreach (Student student in students)
+                foreach (Student student in inputStudents)
                 {
                     command.Parameters.AddWithValue("@param1", student.StudentId);
                     command.Parameters.AddWithValue("@param2", student.FirstName);
                     command.Parameters.AddWithValue("@param3", student.LastName);
                     command.Parameters.AddWithValue("@param4", student.Email);
                     command.Parameters.AddWithValue("@param5", student.PhoneNumber);
+                    command.Connection = connection;
                     command.ExecuteNonQuery();
                 } 
             }

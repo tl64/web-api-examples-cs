@@ -46,7 +46,7 @@ namespace MiddlePartWebAPI.Controllers
         // POST: api/Students
         public void Post([FromBody]string value)
         {
-            var data = (List<Student>)JsonConvert.DeserializeObject(value, typeof(List<Student>));
+            var data = (Student[])JsonConvert.DeserializeObject(value, typeof(Student[]));
             proxy.AddStudentAsync(data);
         }
 
