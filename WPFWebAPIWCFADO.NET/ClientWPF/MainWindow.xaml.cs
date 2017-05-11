@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +37,11 @@ namespace ClientWPF
         //get all students
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MyGrid.ItemsSource = null;
             var response = client.GetAsync($"{currentAddress}api/Students").Result;
             var json = response.Content.ReadAsStringAsync().Result;
             var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
-            Grid.ItemsSource = data;
+            MyGrid.ItemsSource = data;
         }
 
         //get by id
@@ -50,10 +52,27 @@ namespace ClientWPF
                 MessageBox.Show("Enter a valid id number");
                 return;
             }
+            MyGrid.ItemsSource = null;
             var response = client.GetAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
             var json = response.Content.ReadAsStringAsync().Result;
             var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
-            Grid.ItemsSource = data;
+            MyGrid.ItemsSource = data;
+        }
+        
+        //add student/studnets to DB
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (MyGrid.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Select/Add some students");
+                return;
+            }
+            var selectedStudents = MyGrid.SelectedItems.OfType<Student>().ToArray();
+            var content = new StringContent(JsonConvert.SerializeObject(selectedStudents), Encoding.UTF8, "application/json");
+            var response = client.PostAsync($"{currentAddress}api/Students", content).Result;
+            MessageBox.Show(response.IsSuccessStatusCode
+                ? "Record/Records added successfully!"
+                : response.Content.ToString());
         }
 
         private static bool IsValidNumber(string text)

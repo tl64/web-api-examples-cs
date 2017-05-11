@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MiddlePartWebAPI.StudentServiceReference;
+using Newtonsoft.Json;
 using ServiceWCF;
 
 namespace MiddlePartWebAPI.Controllers
@@ -29,22 +30,24 @@ namespace MiddlePartWebAPI.Controllers
         }
 
         // GET: api/Students/5
-        public IEnumerable<Student> Get(int id)
+        public Student Get(int id)
         {
             var student = proxy.GetStudentByIDAsync(id).Result;
-            return student.AsEnumerable().Select(row => new Student
+            return new Student
             {
-                StudentId = Convert.ToInt32(row["StudentID"]),
-                FirstName = row["FName"].ToString(),
-                LastName = row["LName"].ToString(),
-                Email = row["Email"].ToString(),
-                PhoneNumber = row["Phone"].ToString()
-            });
+                StudentId = Convert.ToInt32(student.Rows[0]["StudentID"]),
+                Email = student.Rows[0]["Email"].ToString(),
+                FirstName = student.Rows[0]["FName"].ToString(),
+                LastName = student.Rows[0]["LName"].ToString(),
+                PhoneNumber = student.Rows[0]["Phone"].ToString()
+            };
         }
 
         // POST: api/Students
         public void Post([FromBody]string value)
         {
+            var data = (List<Student>)JsonConvert.DeserializeObject(value, typeof(List<Student>));
+            proxy.AddStudentAsync(data);
         }
 
         // PUT: api/Students/5

@@ -14,11 +14,10 @@ namespace ServiceWCF
     {
         [OperationContract]
         DataTable GetAllStudents();
-
         [OperationContract]
         DataTable GetStudentByID(int id);
         [OperationContract]
-        void AddStudent();
+        void AddStudent(IEnumerable<Student> students);
         [OperationContract]
         void UpdateStudent(int id);
         [OperationContract]
