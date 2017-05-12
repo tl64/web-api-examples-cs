@@ -44,10 +44,10 @@ namespace MiddlePartWebAPI.Controllers
         }
 
         // POST: api/Students
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Student[] value)
         {
-            var data = (Student[])JsonConvert.DeserializeObject(value, typeof(Student[]));
-            proxy.AddStudentAsync(data);
+            //var data = (Student)JsonConvert.DeserializeObject(value, typeof(Student));
+            proxy.AddStudentAsync(value);
         }
 
         // PUT: api/Students/5

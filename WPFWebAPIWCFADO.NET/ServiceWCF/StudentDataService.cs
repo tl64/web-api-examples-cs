@@ -77,11 +77,11 @@ namespace ServiceWCF
             {
                 foreach (Student student in inputStudents)
                 {
-                    command.Parameters.AddWithValue("@param1", student.StudentId);
-                    command.Parameters.AddWithValue("@param2", student.FirstName);
-                    command.Parameters.AddWithValue("@param3", student.LastName);
-                    command.Parameters.AddWithValue("@param4", student.Email);
-                    command.Parameters.AddWithValue("@param5", student.PhoneNumber);
+                    command.Parameters.AddWithValue("param1", student.StudentId);
+                    command.Parameters.AddWithValue("param2", student.FirstName);
+                    command.Parameters.AddWithValue("param3", student.LastName);
+                    command.Parameters.AddWithValue("param4", student.Email);
+                    command.Parameters.AddWithValue("param5", student.PhoneNumber);
                     command.Connection = connection;
                     command.ExecuteNonQuery();
                 } 
@@ -90,7 +90,20 @@ namespace ServiceWCF
 
         public void UpdateStudent(int id)
         {
-            throw new NotImplementedException();
+            //Student s = inputStudents;
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    SqlCommand command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
+            //    command.Parameters.AddWithValue("StudentID", s.StudentId);
+            //    command.Parameters.AddWithValue("FName", s.FirstName);
+            //    command.Parameters.AddWithValue("LName", s.LastName);
+            //    command.Parameters.AddWithValue("Email", s.Email);
+            //    command.Parameters.AddWithValue("Phone", s.PhoneNumber);
+            //    connection.Open();
+            //    command.ExecuteNonQuery();
+            //    connection.Close();
+
+            //}
         }
 
         public void RemoveStudent(int id)

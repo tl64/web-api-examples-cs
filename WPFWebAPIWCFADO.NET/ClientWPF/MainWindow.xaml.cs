@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -67,9 +68,17 @@ namespace ClientWPF
                 MessageBox.Show("Select/Add some students");
                 return;
             }
+            //var selectedStudents = MyGrid.SelectedItems.OfType<Student>().ToArray();
+            //var content = new StringContent(JsonConvert.SerializeObject(selectedStudents), Encoding.UTF8, "application/json");
+            //var response = client.PostAsync($"{currentAddress}api/Students", content).Result;
+            //MessageBox.Show(response.IsSuccessStatusCode
+            //    ? "Record/Records added successfully!"
+            //    : response.Content.ToString());
+
+
             var selectedStudents = MyGrid.SelectedItems.OfType<Student>().ToArray();
-            var content = new StringContent(JsonConvert.SerializeObject(selectedStudents), Encoding.UTF8, "application/json");
-            var response = client.PostAsync($"{currentAddress}api/Students", content).Result;
+            //var content = new StringContent(JsonConvert.SerializeObject(selectedStudents), Encoding.UTF8, "application/json");
+            var response = client.PostAsync($"{currentAddress}api/Students", selectedStudents, new JsonMediaTypeFormatter()).Result;
             MessageBox.Show(response.IsSuccessStatusCode
                 ? "Record/Records added successfully!"
                 : response.Content.ToString());
