@@ -71,20 +71,21 @@ namespace ServiceWCF
         public void AddStudent(IEnumerable<Student> inputStudents)
         {
             var connection = new SqlConnection(connectionString);
-            var query = @"insert Students values (@param1,@param2,@param3,@param4,@param5)";
-            var command = new SqlCommand(query,connection);
+            var query = @"insert Students values (@param1,@param2,@param3,@param4)";
+            SqlCommand command;
             using (connection)
             {
+                connection.Open();
                 foreach (Student student in inputStudents)
                 {
-                    command.Parameters.AddWithValue("param1", student.StudentId);
-                    command.Parameters.AddWithValue("param2", student.FirstName);
-                    command.Parameters.AddWithValue("param3", student.LastName);
-                    command.Parameters.AddWithValue("param4", student.Email);
-                    command.Parameters.AddWithValue("param5", student.PhoneNumber);
+                    command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("param1", student.FirstName);
+                    command.Parameters.AddWithValue("param2", student.LastName);
+                    command.Parameters.AddWithValue("param3", student.Email);
+                    command.Parameters.AddWithValue("param4", student.PhoneNumber);
                     command.Connection = connection;
                     command.ExecuteNonQuery();
-                } 
+                }
             }
         }
 
@@ -108,7 +109,24 @@ namespace ServiceWCF
 
         public void RemoveStudent(int id)
         {
-            throw new NotImplementedException();
+            //using (var connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    using (var command = new SqlCommand($"delete Students where StudentID = {id}", connection))
+            //    {
+            //        command.ExecuteNonQuery();
+            //    }
+            //}
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var sqlStatement = "DELETE FROM Students WHERE StudentID = @id";
+                connection.Open();
+                var cmd = new SqlCommand(sqlStatement, connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery(); 
+            }
         }
     }
 }

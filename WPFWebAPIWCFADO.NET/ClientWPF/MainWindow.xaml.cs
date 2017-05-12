@@ -34,6 +34,10 @@ namespace ClientWPF
         {
             InitializeComponent();
         }
+        private static bool IsValidNumber(string text)
+        {
+            return !string.IsNullOrEmpty(text) && text.All(char.IsDigit);
+        }
 
         //get all students
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -77,16 +81,32 @@ namespace ClientWPF
 
 
             var selectedStudents = MyGrid.SelectedItems.OfType<Student>().ToArray();
-            //var content = new StringContent(JsonConvert.SerializeObject(selectedStudents), Encoding.UTF8, "application/json");
             var response = client.PostAsync($"{currentAddress}api/Students", selectedStudents, new JsonMediaTypeFormatter()).Result;
             MessageBox.Show(response.IsSuccessStatusCode
                 ? "Record/Records added successfully!"
                 : response.Content.ToString());
         }
 
-        private static bool IsValidNumber(string text)
+        //delete Student by id
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            return !string.IsNullOrEmpty(text) && text.All(char.IsDigit);
+            //this is the version where we will delete a record entering the id from textbox
+            //if (!IsValidNumber(IdTextBox.Text))
+            //{
+            //    MessageBox.Show("Enter a valid id number");
+            //    return;
+            //}
+            //var selectedStudent = MyGrid.SelectedItems[0] as Student;
+            //var response = client.DeleteAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
+            //MessageBox.Show(response.IsSuccessStatusCode
+            //    ? "Record/Records deleted successfully!"
+            //    : response.Content.ToString());
+
+            var selectedStudent = MyGrid.SelectedItems[0] as Student;
+            var response = client.DeleteAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}").Result;
+            MessageBox.Show(response.IsSuccessStatusCode
+                ? "Record/Records deleted successfully!"
+                : response.Content.ToString());
         }
     }
 }

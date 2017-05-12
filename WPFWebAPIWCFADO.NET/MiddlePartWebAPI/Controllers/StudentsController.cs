@@ -58,6 +58,7 @@ namespace MiddlePartWebAPI.Controllers
         // DELETE: api/Students/5
         public void Delete(int id)
         {
+            proxy.RemoveStudentAsync(id);
         }
     }
 }
