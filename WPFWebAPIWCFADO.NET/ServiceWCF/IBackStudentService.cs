@@ -19,7 +19,7 @@ namespace ServiceWCF
         [OperationContract]
         void AddStudent(IEnumerable<Student> students);
         [OperationContract]
-        void UpdateStudent(int id);
+        void UpdateStudent(int id, Student student);
         [OperationContract]
         void RemoveStudent(int id);
     }

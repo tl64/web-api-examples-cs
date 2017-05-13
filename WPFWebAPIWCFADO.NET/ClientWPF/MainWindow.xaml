@@ -19,7 +19,7 @@
             <Button Margin="5" Click="Button_Click">Get all</Button>
             <Button Margin="5" Click="Button_Click_2">Add</Button>
             <Button Margin="5" Click="Button_Click_3">Delete</Button>
-            <Button Margin="5">Update</Button>
+            <Button Margin="5" Click="Button_Click_4">Update</Button>
             <TextBox Name="IdTextBox" VerticalAlignment="Center">Enter ID</TextBox>
         </StackPanel>
     </Grid>

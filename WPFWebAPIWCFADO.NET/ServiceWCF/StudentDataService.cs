@@ -8,7 +8,6 @@ using System.Windows;
 
 namespace ServiceWCF
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class StudentDataService : IBackStudentService
     {
         private const string connectionString = @"data source = (local)\sqlexpress; initial catalog = shopdb; integrated security = true;";
@@ -55,7 +54,6 @@ namespace ServiceWCF
             using (conn)
             {
                 conn.Open();
-
                 using (var da = new SqlDataAdapter(cmd))
                 {
                     da.Fill(students);
@@ -85,25 +83,26 @@ namespace ServiceWCF
                     command.Parameters.AddWithValue("param4", student.PhoneNumber);
                     command.Connection = connection;
                     command.ExecuteNonQuery();
+                    command.Dispose();
                 }
             }
         }
 
-        public void UpdateStudent(int id)
+        public void UpdateStudent(int id, Student student)
         {
-            Student s = inputStudents;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
-                command.Parameters.AddWithValue("StudentID", s.StudentId);
-                command.Parameters.AddWithValue("FName", s.FirstName);
-                command.Parameters.AddWithValue("LName", s.LastName);
-                command.Parameters.AddWithValue("Email", s.Email);
-                command.Parameters.AddWithValue("Phone", s.PhoneNumber);
+                //var command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
+                var command = new SqlCommand("UPDATE Students SET FName=@FName, LName=@LName, Email = @Email, Phone = @Phone WHERE StudentID=@Studentid", connection);
+                command.Parameters.AddWithValue("FName", student.FirstName);
+                command.Parameters.AddWithValue("LName", student.LastName);
+                command.Parameters.AddWithValue("Email", student.Email);
+                command.Parameters.AddWithValue("Phone", student.PhoneNumber);
+                command.Parameters.AddWithValue("StudentID", id);
                 connection.Open();
                 command.ExecuteNonQuery();
-                connection.Close();
-
+                command.Dispose();
+                //connection.Close();
             }
         }
 

@@ -51,8 +51,9 @@ namespace MiddlePartWebAPI.Controllers
         }
 
         // PUT: api/Students/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Student value)
         {
+            proxy.UpdateStudentAsync(id, value);
         }
 
         // DELETE: api/Students/5

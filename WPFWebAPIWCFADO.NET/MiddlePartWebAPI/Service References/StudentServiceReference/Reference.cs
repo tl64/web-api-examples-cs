@@ -34,10 +34,10 @@ namespace MiddlePartWebAPI.StudentServiceReference {
         System.Threading.Tasks.Task AddStudentAsync(ServiceWCF.Student[] students);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/UpdateStudent", ReplyAction="http://tempuri.org/IBackStudentService/UpdateStudentResponse")]
-        void UpdateStudent(int id);
+        void UpdateStudent(int id, ServiceWCF.Student student);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/UpdateStudent", ReplyAction="http://tempuri.org/IBackStudentService/UpdateStudentResponse")]
-        System.Threading.Tasks.Task UpdateStudentAsync(int id);
+        System.Threading.Tasks.Task UpdateStudentAsync(int id, ServiceWCF.Student student);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBackStudentService/RemoveStudent", ReplyAction="http://tempuri.org/IBackStudentService/RemoveStudentResponse")]
         void RemoveStudent(int id);
@@ -97,12 +97,12 @@ namespace MiddlePartWebAPI.StudentServiceReference {
             return base.Channel.AddStudentAsync(students);
         }
         
-        public void UpdateStudent(int id) {
-            base.Channel.UpdateStudent(id);
+        public void UpdateStudent(int id, ServiceWCF.Student student) {
+            base.Channel.UpdateStudent(id, student);
         }
         
-        public System.Threading.Tasks.Task UpdateStudentAsync(int id) {
-            return base.Channel.UpdateStudentAsync(id);
+        public System.Threading.Tasks.Task UpdateStudentAsync(int id, ServiceWCF.Student student) {
+            return base.Channel.UpdateStudentAsync(id, student);
         }
         
         public void RemoveStudent(int id) {
