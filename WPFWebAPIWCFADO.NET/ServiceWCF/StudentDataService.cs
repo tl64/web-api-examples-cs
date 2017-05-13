@@ -91,20 +91,20 @@ namespace ServiceWCF
 
         public void UpdateStudent(int id)
         {
-            //Student s = inputStudents;
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    SqlCommand command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
-            //    command.Parameters.AddWithValue("StudentID", s.StudentId);
-            //    command.Parameters.AddWithValue("FName", s.FirstName);
-            //    command.Parameters.AddWithValue("LName", s.LastName);
-            //    command.Parameters.AddWithValue("Email", s.Email);
-            //    command.Parameters.AddWithValue("Phone", s.PhoneNumber);
-            //    connection.Open();
-            //    command.ExecuteNonQuery();
-            //    connection.Close();
+            Student s = inputStudents;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
+                command.Parameters.AddWithValue("StudentID", s.StudentId);
+                command.Parameters.AddWithValue("FName", s.FirstName);
+                command.Parameters.AddWithValue("LName", s.LastName);
+                command.Parameters.AddWithValue("Email", s.Email);
+                command.Parameters.AddWithValue("Phone", s.PhoneNumber);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
 
-            //}
+            }
         }
 
         public void RemoveStudent(int id)
