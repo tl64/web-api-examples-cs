@@ -22,6 +22,7 @@ using Newtonsoft.Json;
 using ServiceWCF;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
+using System.Web.Script.Serialization;
 
 namespace ClientWPF
 {
@@ -62,8 +63,9 @@ namespace ClientWPF
             MyGrid.ItemsSource = null;
             var response = client.GetAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (List<Student>)JsonConvert.DeserializeObject(json, typeof(List<Student>));
-            MyGrid.ItemsSource = data;
+            var jss = new JavaScriptSerializer();
+            var data = jss.Deserialize<Student>(json);
+            MyGrid.ItemsSource = new[] { data };
         }
 
         //add student/studnets to DB
@@ -110,13 +112,14 @@ namespace ClientWPF
                 return;
             }
             var selectedStudent = MyGrid.SelectedItems[0] as Student;
-            var del = MessageBox.Show($"Are you Sure you want to delete student: {selectedStudent?.FirstName} {selectedStudent?.LastName}", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var del = MessageBox.Show($"Are you Sure you want to delete student: {selectedStudent.FirstName} {selectedStudent.LastName}", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (del == MessageBoxResult.Yes)
             {
-                var response = client.DeleteAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}").Result;
+                var response = client.DeleteAsync($"{currentAddress}api/Students/{selectedStudent.StudentId}").Result;
                 MessageBox.Show(response.IsSuccessStatusCode
                     ? "Record/Records deleted successfully!"
                     : response.Content.ToString());
+                MyGrid.Items.Refresh();
             }
             else Show();
         }
