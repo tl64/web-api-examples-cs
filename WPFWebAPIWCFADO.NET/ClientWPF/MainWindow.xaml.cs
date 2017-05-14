@@ -20,6 +20,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using ServiceWCF;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ClientWPF
 {
@@ -45,7 +47,7 @@ namespace ClientWPF
             MyGrid.ItemsSource = null;
             var response = client.GetAsync($"{currentAddress}api/Students").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
+            var data = (List<Student>)JsonConvert.DeserializeObject(json, typeof(List<Student>));
             MyGrid.ItemsSource = data;
         }
 
@@ -60,10 +62,10 @@ namespace ClientWPF
             MyGrid.ItemsSource = null;
             var response = client.GetAsync($"{currentAddress}api/Students/{IdTextBox.Text}").Result;
             var json = response.Content.ReadAsStringAsync().Result;
-            var data = (List<Student>) JsonConvert.DeserializeObject(json, typeof (List<Student>));
+            var data = (List<Student>)JsonConvert.DeserializeObject(json, typeof(List<Student>));
             MyGrid.ItemsSource = data;
         }
-        
+
         //add student/studnets to DB
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -108,10 +110,15 @@ namespace ClientWPF
                 return;
             }
             var selectedStudent = MyGrid.SelectedItems[0] as Student;
-            var response = client.DeleteAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}").Result;
-            MessageBox.Show(response.IsSuccessStatusCode
-                ? "Record/Records deleted successfully!"
-                : response.Content.ToString());
+            var del = MessageBox.Show($"Are you Sure you want to delete student: {selectedStudent?.FirstName} {selectedStudent?.LastName}", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (del == MessageBoxResult.Yes)
+            {
+                var response = client.DeleteAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}").Result;
+                MessageBox.Show(response.IsSuccessStatusCode
+                    ? "Record/Records deleted successfully!"
+                    : response.Content.ToString());
+            }
+            else Show();
         }
 
         //update

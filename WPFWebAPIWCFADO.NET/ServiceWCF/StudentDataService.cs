@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace ServiceWCF
 {
@@ -69,7 +69,7 @@ namespace ServiceWCF
         public void AddStudent(IEnumerable<Student> inputStudents)
         {
             var connection = new SqlConnection(connectionString);
-            var query = @"insert Students values (@param1,@param2,@param3,@param4)";
+            const string query = @"insert Students values (@param1,@param2,@param3,@param4)";
             SqlCommand command;
             using (connection)
             {
@@ -117,15 +117,24 @@ namespace ServiceWCF
             //    }
             //}
 
-            using (var connection = new SqlConnection(connectionString))
-            {
-                var sqlStatement = "DELETE FROM Students WHERE StudentID = @id";
-                connection.Open();
-                var cmd = new SqlCommand(sqlStatement, connection);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery(); 
-            }
+
+            var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var cmd = new SqlCommand($"DELETE from Students WHERE (StudentID={id})", con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            //using (var connection = new SqlConnection(connectionString))
+            //{
+            //    const string sqlStatement = "DELETE FROM Students WHERE StudentID = @id";
+            //    connection.Open();
+            //    var cmd = new SqlCommand(sqlStatement, connection);
+            //    cmd.Parameters.AddWithValue("@id", id);
+            //    cmd.CommandType = CommandType.Text;
+            //    cmd.ExecuteNonQuery(); 
+            //}
         }
     }
 }
