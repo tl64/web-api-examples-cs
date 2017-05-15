@@ -127,18 +127,18 @@ namespace ClientWPF
         //update
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            if (MyGrid.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Select a student!");
-                return;
-            }
-            var selectedStudent = MyGrid.SelectedItems[0] as Student;
-            var response =
-                client.PutAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}", selectedStudent,
-                    new JsonMediaTypeFormatter()).Result;
-            MessageBox.Show(response.IsSuccessStatusCode
-                ? "Record/Records updated successfully!"
-                : response.Content.ToString());
+            //if (MyGrid.SelectedItems.Count == 0)
+            //{
+            //    MessageBox.Show("Select a student!");
+            //    return;
+            //}
+            //var selectedStudent = MyGrid.SelectedItems[0] as Student;
+            //var response =
+            //    client.PutAsync($"{currentAddress}api/Students/{selectedStudent?.StudentId}", selectedStudent,
+            //        new JsonMediaTypeFormatter()).Result;
+            //MessageBox.Show(response.IsSuccessStatusCode
+            //    ? "Record/Records updated successfully!"
+            //    : response.Content.ToString());
         }
     }
 }
