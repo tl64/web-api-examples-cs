@@ -92,17 +92,29 @@ namespace ServiceWCF
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                //var command = new SqlCommand("UPDATE Studentss SET Studentid=@Studentid, FName=@FName, LName=@LName, Email = @Email, Phone = @Phone  WHERE StudentID=@Studentid", connection);
-                var command = new SqlCommand("UPDATE Students SET FName=@FName, LName=@LName, Email = @Email, Phone = @Phone WHERE StudentID=@Studentid", connection);
-                command.Parameters.AddWithValue("FName", student.FirstName);
-                command.Parameters.AddWithValue("LName", student.LastName);
-                command.Parameters.AddWithValue("Email", student.Email);
-                command.Parameters.AddWithValue("Phone", student.PhoneNumber);
-                command.Parameters.AddWithValue("StudentID", id);
                 connection.Open();
-                command.ExecuteNonQuery();
-                command.Dispose();
-                //connection.Close();
+                var transaction = connection.BeginTransaction();
+                var command = connection.CreateCommand();
+                try
+                {
+                    command.CommandText =
+                        $"UPDATE Students SET FName={student.FirstName}, LName={student.LastName}, Email = {student.Email}, Phone = {student.PhoneNumber} WHERE StudentID={id}";
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                    catch (Exception exceptionRollback)
+                    {
+                        throw exceptionRollback;
+                    }
+                }
             }
         }
 
@@ -118,13 +130,33 @@ namespace ServiceWCF
             //}
 
 
-            var con = new SqlConnection(connectionString);
-            con.Open();
 
-            var cmd = new SqlCommand($"DELETE from Students WHERE (StudentID={id})", con);
-            cmd.ExecuteNonQuery();
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                var transaction = con.BeginTransaction();
+                var command = con.CreateCommand();
 
-            con.Close();
+                try
+                {
+                    command.CommandText = $"DELETE from Students WHERE StudentID={id}";
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                    catch (Exception exRollback)
+                    {
+                        throw exRollback;
+                    }
+                }
+            }
+
 
             //using (var connection = new SqlConnection(connectionString))
             //{
