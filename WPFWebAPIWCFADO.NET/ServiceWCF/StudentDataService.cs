@@ -90,32 +90,32 @@ namespace ServiceWCF
 
         public void UpdateStudent(int id, Student student)
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                var transaction = connection.BeginTransaction();
-                var command = connection.CreateCommand();
-                try
-                {
-                    command.CommandText =
-                        $"UPDATE Students SET FName={student.FirstName}, LName={student.LastName}, Email = {student.Email}, Phone = {student.PhoneNumber} WHERE StudentID={id}";
-                    command.ExecuteNonQuery();
-                    command.Dispose();
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    try
-                    {
-                        transaction.Rollback();
-                        throw ex;
-                    }
-                    catch (Exception exceptionRollback)
-                    {
-                        throw exceptionRollback;
-                    }
-                }
-            }
+            //using (var connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    var transaction = connection.BeginTransaction();
+            //    var command = connection.CreateCommand();
+            //    try
+            //    {
+            //        command.CommandText =
+            //            $"UPDATE Students SET FName={student.FirstName}, LName={student.LastName}, Email = {student.Email}, Phone = {student.PhoneNumber} WHERE StudentID={id}";
+            //        command.ExecuteNonQuery();
+            //        command.Dispose();
+            //        transaction.Commit();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        try
+            //        {
+            //            transaction.Rollback();
+            //            throw ex;
+            //        }
+            //        catch (Exception exceptionRollback)
+            //        {
+            //            throw exceptionRollback;
+            //        }
+            //    }
+            //}
         }
 
         public void RemoveStudent(int id)
